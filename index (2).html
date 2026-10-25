@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>예은교회 주일 예배 스터디 카드</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --primary: #d97706; --primary-light: #fef3c7; --primary-dark: #b45309;
+            --bg: #f1f5f9; --app-bg: #f8fafc; 
+        }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; } 
+        body { background-color: var(--bg); margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100dvh; font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
+        .app-container { width: 100vw; height: 100dvh; background-color: var(--app-bg); display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; }
+        .app-container::-webkit-scrollbar { display: none; }
+        @media (min-width: 768px) { .app-container { width: 450px; height: 90vh; border-radius: 2.5rem; border: 10px solid #1e293b; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3); } }
+        
+        .slide-section { flex: 0 0 100%; width: 100%; height: 100%; scroll-snap-align: start; scroll-snap-stop: always; display: flex; flex-direction: column; position: relative; overflow: hidden; background: white; }
+        .section-content { flex: 1; overflow-y: auto; padding: 3rem 1.5rem 2rem 1.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+        .section-content::-webkit-scrollbar { display: none; }
+        
+        .nav-footer { flex-shrink: 0; padding: 1.2rem 1.5rem; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(15px); display: flex; justify-content: space-between; gap: 1rem; border-top: 1px solid #e2e8f0; z-index: 40; }
+        .btn-nav { padding: 0.9rem 1rem; border-radius: 1.2rem; font-weight: 700; font-size: 0.95rem; flex: 1; text-align: center; cursor: pointer; border: none; transition: 0.3s; }
+        .btn-next { background-color: var(--primary); color: white; }
+        .btn-prev { background-color: #f1f5f9; color: #64748b; border: 1px solid #e2e8f0; }
+        
+        .detail-text { font-size: 1.15rem; line-height: 1.8; color: #334155; word-break: keep-all; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; border-radius: 1rem; overflow: hidden; background: #000; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .video-wrapper iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+        
+        .badge { display: inline-block; padding: 0.3rem 0.8rem; background-color: var(--primary-light); color: var(--primary-dark); font-weight: 700; border-radius: 2rem; font-size: 0.85rem; margin-bottom: 1rem; }
+        .card { background: white; border-radius: 1rem; padding: 1.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); border: 1px solid #f1f5f9; }
+        
+        .mask-word { background: #e2e8f0; color: #e2e8f0; padding: 0 4px; border-radius: 4px; cursor: pointer; transition: 0.3s; }
+        .mask-word:active { background: transparent; color: var(--primary-dark); font-weight: bold; }
+
+        @media print {
+            body, html { background: white !important; overflow: visible !important; height: auto !important; }
+            .app-container { display: block !important; width: 100% !important; border: none !important; box-shadow: none !important; }
+            .slide-section { page-break-after: always !important; height: auto !important; display: block !important; border-bottom: 1px solid #eee; padding-bottom: 2rem; }
+            .nav-footer, .btn-nav { display: none !important; }
+            .section-content { padding: 1rem 0 !important; overflow: visible !important; }
+            .card { box-shadow: none !important; border: 1px solid #ddd !important; break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container" id="app">
+
+        <!-- Section 1: 타이틀 및 영상 -->
+        <div class="slide-section" id="sec1">
+            <div class="section-content">
+                <div>
+                    <span class="badge">예은교회 2026.10.26</span>
+                    <h1 class="text-3xl font-bold text-gray-800 font-[Nanum_Myeongjo] leading-tight mb-2">마침내 복을 주시려</h1>
+                    <p class="text-gray-500 font-medium">본문: 신명기 8:2-18</p>
+                </div>
+                <div class="video-wrapper mt-4">
+                    <iframe src="https://www.youtube.com/embed/v4KN6xftoG0" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="card mt-4 bg-[var(--primary-light)] border-none">
+                    <p class="text-[var(--primary-dark)] font-bold text-center">"광야의 결핍은 우리를 낮추시고 마침내 진짜 복이신 하나님을 주시기 위한 사랑의 과정입니다."</p>
+                </div>
+            </div>
+            <div class="nav-footer">
+                <button class="btn-nav btn-next w-full" onclick="scrollToSec('sec2')">설교 강해 보기 ➔</button>
+            </div>
+        </div>
+
+        <!-- Section 2: 설교 강해 요약 -->
+        <div class="slide-section" id="sec2">
+            <div class="section-content">
+                <span class="badge">Sermon Outline</span>
+                <h2 class="text-2xl font-bold text-gray-800 border-b-2 border-[var(--primary)] pb-2 inline-block mb-4">설교 강해</h2>
+                
+                <div class="space-y-4">
+                    <div class="card">
+                        <h3 class="font-bold text-lg mb-1">서론</h3>
+                        <p class="text-gray-600">신명기는 가나안을 눈앞에 둔 모압 평지에서 모세가 남긴 고별 설교입니다. 좁은 고치를 뚫고 나오는 고통이 나방의 날개를 펴게 하듯, 광야의 고통은 우리를 비상하게 하는 필수적인 과정입니다.</p>
+                    </div>
+                    <div class="card border-l-4 border-[var(--primary)]">
+                        <h3 class="font-bold text-lg mb-1">Point 1. 광야의 은혜를 찾아라</h3>
+                        <p class="text-gray-600">광야 40년은 이스라엘이 버려진 시간이 아니라 빚어지는 시간이었습니다. 부족함 속에서도 의복과 발이 상하지 않게 하신 세밀한 하나님의 손길을 깨닫고, 고난 속에 담긴 복을 헤아려야 합니다.</p>
+                    </div>
+                    <div class="card border-l-4 border-[var(--primary)]">
+                        <h3 class="font-bold text-lg mb-1">Point 2. 받은 복을 복되게 하라</h3>
+                        <p class="text-gray-600">고난의 때보다 배부르고 평안할 때가 더 위험할 수 있습니다. 다윗과 삼손의 예처럼, 형통할 때 교만해져서 하나님을 잊어버리는 것을 경계하고 치유하신 주님 자체를 얻는 신앙이 되어야 합니다.</p>
+                    </div>
+                    <div class="card border-l-4 border-[var(--primary)]">
+                        <h3 class="font-bold text-lg mb-1">Point 3. 복 주신 하나님을 기억하라</h3>
+                        <p class="text-gray-600">나의 능력이 아니라 하나님이 주신 은혜임을 야곱처럼 고백해야 합니다. 축복이 금송아지 같은 우상이 되지 않게 하고, 아브라함의 언약처럼 이웃에게 복을 흘려보내는 통로가 되어야 합니다.</p>
+                    </div>
+                    <div class="card bg-gray-50">
+                        <h3 class="font-bold text-lg mb-1">결론</h3>
+                        <p class="text-gray-600">모든 것을 잃었던 욥의 말년에 주신 복, 풍랑 속 바울이 겪은 섭리처럼 하나님은 우리 인생의 결말을 희망으로 쓰십니다. 마침내 예비된 가장 큰 복은 바로 '하나님 자신'입니다.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-footer">
+                <button class="btn-nav btn-prev" onclick="scrollToSec('sec1')">이전</button>
+                <button class="btn-nav btn-next" onclick="scrollToSec('sec3')">성서 주해 ➔</button>
+            </div>
+        </div>
+
+        <!-- Section 3: 성서학적 심층 주해 -->
+        <div class="slide-section" id="sec3">
+            <div class="section-content">
+                <span class="badge">Deep Exegesis</span>
+                <h2 class="text-2xl font-bold text-gray-800 border-b-2 border-[var(--primary)] pb-2 inline-block mb-4">본문 깊이 읽기</h2>
+                <div class="card">
+                    <p class="detail-text">신명기 8장의 배경은 40년의 척박한 광야(간조한 땅, 불뱀과 전갈의 위협)를 통과하여 약속의 땅 가나안 입성을 눈앞에 둔 모압 평지입니다. 모세는 이스라엘이 광야에서 철저히 결핍을 경험한 이유가 단순히 그들을 괴롭히기 위함이 아님을 분명히 밝힙니다. 좁은 고치를 뚫고 나오는 나방의 몸부림이 비행을 위한 필수 과정이듯, 하나님은 광야라는 거칠고 건조한 환경을 통해 백성들의 교만을 꺾으시고 전적인 의존을 가르치셨습니다. 여기서 말씀하시는 '마침내 주시려는 복'은 물질적 풍요를 넘어 궁극적인 구원과 완성, 즉 하나님과의 완전한 연합을 가리킵니다. 따라서 본문은 고난 자체가 목적이 아니라, 고난을 통과하며 영적으로 온전히 빚어진 자에게 영원한 생명이신 하나님 자신을 내어주시기 위한 신실한 사랑의 언약을 웅변하고 있습니다.</p>
+                </div>
+            </div>
+            <div class="nav-footer">
+                <button class="btn-nav btn-prev" onclick="scrollToSec('sec2')">이전</button>
+                <button class="btn-nav btn-next" onclick="scrollToSec('sec4')">원어 탐구 ➔</button>
+            </div>
+        </div>
+
+        <!-- Section 4: 원어 분석 -->
+        <div class="slide-section" id="sec4">
+            <div class="section-content">
+                <span class="badge">Lexicon</span>
+                <h2 class="text-2xl font-bold text-gray-800 border-b-2 border-[var(--primary)] pb-2 inline-block mb-4">성서 원어 탐구</h2>
+                <div class="space-y-4">
+                    <div class="card">
+                        <div class="text-[var(--primary)] font-bold text-lg">아하리트 (אחרית)</div>
+                        <div class="text-xl font-bold">마침내, 결말</div>
+                        <p class="text-gray-600">단순한 시간적 끝이 아니라, 하나님의 궁극적인 목적과 섭리가 완성되는 영광스러운 최종 결말을 의미합니다.</p>
+                    </div>
+                    <div class="card">
+                        <div class="text-[var(--primary)] font-bold text-lg">아나 (ענה)</div>
+                        <div class="text-xl font-bold">낮추시며, 괴롭게 하다</div>
+                        <p class="text-gray-600">교만한 자아를 깨뜨리고 오직 하나님만 전적으로 의존하도록 겸손하게 빚어가는 훈련 과정을 뜻합니다.</p>
+                    </div>
+                    <div class="card">
+                        <div class="text-[var(--primary)] font-bold text-lg">자카르 (זכר)</div>
+                        <div class="text-xl font-bold">기억하라</div>
+                        <p class="text-gray-600">과거의 사실을 뇌리에 떠올리는 것을 넘어, 하나님의 은혜를 현재의 삶 속에 적극적으로 모셔 들이고 순종하는 의지적 결단입니다.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-footer">
+                <button class="btn-nav btn-prev" onclick="scrollToSec('sec3')">이전</button>
+                <button class="btn-nav btn-next"
